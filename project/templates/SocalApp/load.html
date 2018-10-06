@@ -1,0 +1,18 @@
+{% extends 'SocalApp/base.html' %}
+{% load static from staticfiles %}
+{% block linkscript%}
+    <script type="text/javascript" charset="utf-8" src="{% static 'js/userlist.js' %}" ></script>
+{% endblock linkscript%}
+
+{% block base %}
+<div id="market">
+    <a  id="{{num}}" href="/load/">
+        load...正在匹配中
+    </a>
+</div>
+<script type="text/javascript">
+      $(document).ready(function(){
+        window.location.href='/load/'
+   });
+</script>
+{% endblock base %}

@@ -1,0 +1,35 @@
+{% extends 'SocalApp/base.html' %}
+{% load static from staticfiles %}
+{% block linkscript%}
+{% endblock linkscript%}
+
+{% block base %}
+{% csrf_token %}
+  <!--联系人列表-->
+      <div  id="contact-list" class="list-group">
+          {% for contact in user.contacts.select_related %}
+
+              <a  contact-id ="{{ contact.userAccount }}"  contact-type="single"  href="/chat/{{contact.userAccount}}/" class="list-group-item">
+              <!--用户自定义id-->
+                  <span style="background: orangered" class="badge hide">0</span>
+                     {{ contact.userName }}
+
+               </a>
+          {% endfor %}
+      </div>
+
+<script type="text/javascript">
+   $(document).ready(function(){
+       $("#contact-list a").click(function(){
+           //点中与谁聊天的颜色改变，并且把名字赋予dialog-box-head
+           $ (this).addClass("active");
+           $(this).children("span").addClass("hide");
+           $(this).children("span").text("0");
+           $(this).siblings().removeClass("active");//同级别siblings,切换聊天人
+           //console.log("hello");
+           SwitchChatBoxhpy(this);
+       });
+   });
+
+</script>
+{% endblock base %}

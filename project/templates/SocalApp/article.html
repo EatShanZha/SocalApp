@@ -1,0 +1,48 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport"content="width=device-width, initial-scale=1, maximum-scale=1.0,user-scalable=no;" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css'%}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/article.css'%}" />
+    <script type="text/javascript" charset="utf-8" src="{% static 'js/jquery-3.1.1.min.js'%}"></script>
+</head>
+<body>
+    <form enctype="multipart/form-data" role="form" action="/article/" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+      <div class="form-group">
+        <input type="text" name="content" class="form-control" id="content" placeholder="记录这一刻晒,给懂你的的人...."/>
+      </div>
+      <img id="portrait" src="" style="display:none;" />
+      <div class="form-group">
+        <label for="inputfile">选择图片</label>
+        <input type="file" name="inputfile" id="inputfile" onchange="showImg(this)"/>
+      </div>
+      <a id="category1">+自定义标签</a>
+      <input type="text" style="display:none" name="category" class="form-control" id="category" placeholder="+自定义标签"/>
+      <button id="submit" type="submit" class="btn btn-default">发布</button>
+    </form>
+</body>
+</html>
+<script type="text/javascript">
+        var content = document.getElementById("content")
+        var inputfile = document.getElementById("inputfile")
+        function showImg(source) {
+          var file = source.files[0];
+          if(window.FileReader) {
+              var fr = new FileReader();
+              console.log(fr);
+              var portrait = document.getElementById("portrait")
+              fr.onloadend = function(e) {
+                portrait.src = e.target.result;
+              };
+              fr.readAsDataURL(file);
+              portrait.style.display = 'block';
+          }
+        }
+        var category1 =document.getElementById("category1")
+        var category =document.getElementById("category")
+        category1.addEventListener("click", function(){
+        category.style.display = "block"
+    },false)
+</script>

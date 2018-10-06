@@ -1,0 +1,117 @@
+{% extends 'SocalApp/base.html' %}
+{% load static from staticfiles %}
+{% block linkscript%}
+    <script type="text/javascript" charset="utf-8" src="{% static 'js/register.js' %}" ></script>
+{% endblock linkscript%}
+
+{% block base %}
+<form action="/register/" method="POST" enctype="multipart/form-data"　class="form-ajax-submit" id="my-form">
+    {%csrf_token%}
+  <ul>
+    <li class="item-content item-input">
+      <div class="item-media">
+        <i class="icon demo-list-icon"></i>
+      </div>
+      <div class="item-inner">
+        <div class="item-title item-label">帐号</div>
+        <div class="item-input-wrap">
+          <input autofocus="autofocus" id="accunt" type="email" placeholder="默认使用邮箱" required validate name="userAccount">
+          <span class="input-clear-button"></span>
+        </div>
+        <span id="checkerr" style="display:none" class="error">账号已被占用，请重新输入</span>
+      </div>
+    </li>
+    <li class="item-content item-input">
+      <div class="item-media">
+        <i class="icon demo-list-icon"></i>
+      </div>
+      <div class="item-inner">
+        <div class="item-title item-label">密码</div>
+        <div class="item-input-wrap">
+          <input id="pass" type="password" placeholder="密码长度为6~16个字符" name="userPasswd1">
+          <span class="input-clear-button"></span>
+        </div>
+        <span id="passerr" style="display:none" class="error">密码格式输入错误</span>
+      </div>
+    </li>
+    </li>
+    <li class="item-content item-input">
+      <div class="item-media">
+        <i class="icon demo-list-icon"></i>
+      </div>
+      <div class="item-inner">
+        <div class="item-title item-label">重复输入</div>
+        <div class="item-input-wrap">
+          <input id="passwd" type="password" placeholder="再次确认密码"name="userPasswd2">
+          <span class="input-clear-button"></span>
+        </div>
+        <span id="passwderr" style="display:none" class="error">两次密码输入不同</span>
+      </div>
+    </li>
+    <li class="item-content item-input">
+      <div class="item-media">
+        <i class="icon demo-list-icon"></i>
+      </div>
+      <div class="item-inner">
+        <div class="item-title item-label">昵称</div>
+        <div class="item-input-wrap">
+          <input type="text" placeholder="请输入您的昵称" required validate name="userName">
+          <span class="input-clear-button"></span>
+        </div>
+      </div>
+    </li>
+    <li class="item-content item-input">
+      <div class="item-media">
+        <i class="icon demo-list-icon"></i>
+      </div>
+      <div class="item-inner">
+        <div class="item-title item-label">性别</div>
+        <div class="item-input-wrap">
+          <select placeholder="请选择您的性别" name="userGender">
+            <option value="Male">男</option>
+            <option value="Female">女</option>
+          </select>
+        </div>
+      </div>
+    </li>
+    <li class="item-content item-input">
+      <div class="item-media">
+        <i class="icon demo-list-icon"></i>
+      </div>
+      <div class="item-inner">
+        <div class="item-title item-label">头像</div>
+        <div class="item-input-wrap">
+          <input type="file" placeholder="请上传您的头像"  name="userImg">
+          <span class="input-clear-button"></span>
+        </div>
+      </div>
+    </li>
+    <li class="item-content item-input">
+      <div class="item-media">
+        <i class="icon demo-list-icon"></i>
+      </div>
+      <div class="item-inner">
+        <div class="item-title item-label">出生日期</div>
+        <div class="item-input-wrap">
+          <input type="date" value="2000-01-00" placeholder="请选择您的出生日期" name="userBirth">
+        </div>
+      </div>
+    </li>
+    <li class="item-content item-input">
+      <div class="item-media">
+        <i class="icon demo-list-icon"></i>
+      </div>
+      <div class="item-inner">
+        <div class="item-title item-label">想说的话</div>
+        <div class="item-input-wrap">
+          <textarea class="resizable" placeholder="个人签名" name="userContent"></textarea>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <div class="block block-strong row">
+    <input type="submit" class="button convert-form-to-data" value="注册">
+  </div>
+</form>
+
+{% endblock base %}

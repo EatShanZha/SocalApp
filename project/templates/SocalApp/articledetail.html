@@ -1,0 +1,61 @@
+{% extends 'SocalApp/base.html' %}
+{% load static from staticfiles %}
+{% block linkscript%}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/public.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/articledetail.css' %}" />
+    <script type="text/javascript" charset="utf-8" src="{% static 'js/articledetail.js'%}"></script>
+{% endblock linkscript%}
+{% block base %}
+<input id="reviewArticle" autofocus="autofocus" type="text" onkeypress="CheckInfo()" placeholder="回复搂主:"/>
+<input id="reviewParent" autofocus="autofocus" type="text" pk="1" onkeypress="CheckInfo_Parent(this)" />
+<div id="main">
+    <div id="list">
+        <ul>
+            <li>
+                <div class="po-avt-wrap">
+                    <img class="po-avt data-avt" src="{% url 'photo' article.author.userImg %}">
+                </div>
+                <div class="po-cmt">
+                    <div class="po-hd">
+                        <p class="po-name"><span class="data-name">{{article.author.userName}}</span></p>
+                        <div class="post">
+                            <p>{{article.content}}</p>
+                            <p>
+                                <img class="list-img" src="{%url 'photo' article.head_img%}" style="height: 80px;">
+                            </p>
+                        </div>
+                        <p class="time">{{article.publish_data}}</p>
+                    </div>
+                    <div class="r"></div>
+                    <div name="{{article.pk}}" id="relate" class="relate">
+                        <div class="collect"><img src="/static/img/收藏.png"></div>
+                        <div class="like"><img src="/static/img/想去.png"><a>11</a></div>
+                        <div class="message" onclick="review()"><img src="/static/img/message.png" /><a>11</a></div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="po-avt-wrap">
+        <div>全部评论</div>
+        <ul>
+            <li>
+                {% for comment in commentlist %}
+                <img class="po-avt data-avt" src="{% url 'photo' comment.user.userImg %}">
+                <div class="po-cmt" value="{{comment.pk}}" id="{{comment.user.userName}}" onclick="review_parent(this)">
+                    <div class="po-hd">
+                        <p class="po-name"><span class="data-name">{{comment.user.userName}}</span></p>
+                        <p class="time">{{comment.date}}</p>
+                    </div>
+                <div class="cmt-list">
+                    <p>{{comment.comment}}</p>
+                </div>
+                </div><a class="floor"></a>
+                <hr/>
+                {% endfor %}
+            </li>
+        </ul>
+    </div>
+</div>
+
+{% endblock base %}

@@ -1,0 +1,41 @@
+{% extends 'SocalApp/base.html' %}
+{% load static from staticfiles %}
+{% block linkscript%}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/public.css' %}" />
+    <script type="text/javascript" charset="utf-8" src="{% static 'js/public.js' %}" ></script>
+    <!--<script type="text/javascript" charset="utf-8" src="{% static 'js/mine.js' %}" ></script>-->
+{% endblock linkscript%}
+{% block base %}
+<div id="main">
+    <div id="list">
+        <ul>
+            {% for article in articlelist %}
+            <li>
+                <div class="po-avt-wrap">
+                    <img class="po-avt data-avt" src="{% url 'photo' article.author.userImg %}">
+                </div>
+                <div class="po-cmt" id="{{article.pk}}" onclick="articledetail(id)">
+                    <div class="po-hd">
+                        <p class="po-name"><span class="data-name">{{article.author.userName}}</span></p>
+                        <div class="post">
+                            <p>{{article.content}}</p>
+                            <p>
+                                <img class="list-img" src="{%url 'photo' article.head_img%}" style="height: 80px;">
+                            </p>
+                        </div>
+                        <p class="time">{{article.publish_data}}</p>
+                    </div>
+                    <div class="r"></div>
+                    <div class="relate">
+                        <div class="collect"><img src="/static/img/收藏.png"></div>
+                        <div class="like"><img src="/static/img/想去.png"><a>11</a></div>
+                        <div class="message"><img src="/static/img/message.png"><a>11</a></div>
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+{% endblock base %}

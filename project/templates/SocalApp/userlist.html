@@ -1,0 +1,18 @@
+{% extends 'SocalApp/base.html' %}
+{% load static from staticfiles %}
+{% block linkscript%}
+    <script type="text/javascript" charset="utf-8" src="{% static 'js/userlist.js' %}" ></script>
+{% endblock linkscript%}
+
+{% block base %}
+<div id="market">
+    <div>
+        {% for user in userlist %}
+        <a href="/userdetail/{{user.userAccount}}/" id="{{user.userAccount}}" >{{user.userName}}</a>
+        {% endfor %}
+    </div>
+    <div>
+        <a href="/matchOnline/">在线匹配</a>
+    </div>
+</div>
+{% endblock base %}

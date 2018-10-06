@@ -1,0 +1,22 @@
+{% extends 'SocalApp/base.html' %}
+{% load static from staticfiles %}
+{% block linkscript%}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/mine.css' %}" />
+    <!--<script type="text/javascript" charset="utf-8" src="{% static 'js/mine.js' %}" ></script>-->
+{% endblock linkscript%}
+{% block base %}
+<div id="mine">
+   <div id="backwall">
+       <img id="userimg" src="{{userimg}}"/>
+       <div id="username">{{user.userName}}</div>
+       <div id="usercontent">{{user.userContent}}</div>
+   </div>
+   <div id="moment">
+       <button>关注</button>
+       <button>私聊</button>
+   </div>
+</div>
+<script type="text/javascript">
+
+</script>
+{% endblock base %}

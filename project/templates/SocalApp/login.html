@@ -1,0 +1,39 @@
+{% extends 'SocalApp/base.html' %}
+{% load static from staticfiles %}
+{% block linkscript%}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}" />
+    <script type="text/javascript" charset="utf-8" src="{% static 'js/login.js' %}" ></script>
+{% endblock linkscript%}
+
+
+{% block base %}
+<form action="/login/" method="POST" class="form-horizontal" role="form">
+  <div class="form-group">
+    <label for="account" class="col-sm-2 control-label">帐号</label>
+    <div class="col-sm-10">
+      <input autofocus="autofocus" type="text" class="form-control" id="account" name="Account" placeholder="请输入帐号">
+      <span id="accountcheck" style="display:none" class="error">帐号不存在</span>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="password" class="col-sm-2 control-label">密码</label>
+    <div class="col-sm-10">
+      <input type="password" class="form-control" id="password" name="Password" placeholder="请输入密码">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button id="login" type="submit" class="btn btn-default">登录</button>
+    </div>
+  </div>
+</form>
+{% endblock base %}
+
+
+
+
+
